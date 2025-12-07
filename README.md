@@ -1,19 +1,15 @@
 # Calculator
 
 A Python calculator implementation with comprehensive test coverage and input validation.
+This Calculator can handle the values up to 1000000 (Not implemented yet on purpose)
 
 ## Features
 
 - **Basic Operations**: Addition, subtraction, multiplication, division
-- **Advanced Operations**: Power, square root, modulo
-- **Input Validation**: Ensures all inputs are within the range [-1,000,000, 1,000,000]
-- **Error Handling**: Proper handling of edge cases (division by zero, negative square roots)
-- **Comprehensive Testing**: 67 tests with 100% code coverage
-- **AAA Test Pattern**: All tests follow Arrange-Act-Assert pattern for clarity
 
 ## Installation
 
-1. Clone the repository:
+1. Fork and Clone the repository:
 ```bash
 git clone https://github.com/Yutaro-Kashiwa/SystemDevelopment5th.git
 cd SystemDevelopment5th
@@ -52,37 +48,6 @@ result = calc.square_root(16)   # 4.0
 result = calc.modulo(10, 3)     # 1
 ```
 
-### Input Validation
-
-The calculator validates all inputs to ensure they are within the acceptable range:
-
-```python
-from src.calculator.calculator import Calculator, InvalidInputException
-
-calc = Calculator()
-
-# This will raise InvalidInputException
-try:
-    calc.add(2000000, 5)
-except InvalidInputException as e:
-    print(e)  # Input value 2000000 is outside the valid range [-1000000, 1000000]
-
-# Values at boundaries work fine
-result = calc.add(1000000, -1000000)  # 0
-```
-
-### Interactive CLI
-
-Run the calculator in interactive mode:
-
-```bash
-python -m src.calculator.calculator
-```
-
-Available operations:
-- `add`, `subtract`, `multiply`, `divide`
-- `power`, `sqrt`, `modulo`
-- `quit` to exit
 
 ## Testing
 
@@ -108,19 +73,6 @@ View the HTML report:
 ```bash
 open htmlcov/index.html
 ```
-
-### Test Organization
-
-Tests are organized into the following categories:
-- **TestAddition**: Tests for addition operation
-- **TestSubtraction**: Tests for subtraction operation
-- **TestMultiplication**: Tests for multiplication operation
-- **TestDivision**: Tests for division operation
-- **TestPower**: Tests for power operation
-- **TestSquareRoot**: Tests for square root operation
-- **TestModulo**: Tests for modulo operation
-- **TestInputValidation**: Tests for input validation
-- **TestEdgeCases**: Tests for edge cases and boundaries
 
 ## Project Structure
 
@@ -166,23 +118,6 @@ SystemDevelopment5th/
 - Raises `ValueError` if b is zero
 - Returns: Quotient of a and b
 
-**`power(base, exponent)`**
-- Raises base to the power of exponent
-- Raises `InvalidInputException` if inputs are outside valid range
-- Returns: base raised to the power of exponent
-
-**`square_root(n)`**
-- Calculates the square root of n
-- Raises `InvalidInputException` if input is outside valid range
-- Raises `ValueError` if n is negative
-- Returns: Square root of n
-
-**`modulo(a, b)`**
-- Calculates a modulo b
-- Raises `InvalidInputException` if inputs are outside valid range
-- Raises `ValueError` if b is zero
-- Returns: Remainder of a divided by b
-
 ### Constants
 
 - `MAX_VALUE = 1000000`: Maximum allowed input value
@@ -194,15 +129,6 @@ SystemDevelopment5th/
 - Raised when input values are outside the valid range [-1000000, 1000000]
 - Inherits from `Exception`
 
-## Development
-
-### Running Tests During Development
-
-```bash
-# Watch mode (requires pytest-watch)
-pip install pytest-watch
-ptw
-```
 
 ### Code Quality
 
@@ -235,6 +161,4 @@ Contributions are welcome! Please ensure:
 
 Yutaro Kashiwa
 
----
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
