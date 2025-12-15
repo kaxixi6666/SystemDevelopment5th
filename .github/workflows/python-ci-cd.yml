@@ -4,9 +4,9 @@ name: Python CI
 # Trigger conditions: push to main branch, submit pull_request to main branch
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 # Job configuration
 jobs:
