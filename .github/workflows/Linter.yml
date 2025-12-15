@@ -28,5 +28,5 @@ jobs:
         run: ruff check .
 
       - name: Run formatter check
-        run: ruff checkout --check .
+        run: ruff checkout -- --check .
 
