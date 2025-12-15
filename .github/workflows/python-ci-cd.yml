@@ -1,0 +1,49 @@
+# 工作流名称
+name: Python CI
+
+# 触发条件：push 到 main 分支、提交 pull_request 到 main 分支
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# 作业配置
+jobs:
+  # 作业名称：test
+  test:
+    # 运行的虚拟机环境（可选：ubuntu-latest、windows-latest、macos-latest）
+    runs-on: ubuntu-latest
+
+    # 步骤：依次执行的操作
+    steps:
+      # 步骤1：拉取仓库代码（GitHub 官方动作）
+      - uses: actions/checkout@v4
+
+      # 步骤2：设置 Python 环境（指定版本，可多个版本测试）
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"  # 你的 Python 版本
+          # 可选：缓存依赖，加速后续运行
+          cache: "pip"
+
+      # 步骤3：安装依赖
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest  # 安装代码检查工具+测试框架
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # 步骤4：代码检查（flake8 检查语法错误、代码规范）
+      - name: Lint with flake8
+        run: |
+          # 停止构建如果有语法错误（E）或逻辑错误（F）
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # 统计警告（W）和信息（I），不停止构建
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+      # 步骤5：运行自动化测试（pytest）
+      - name: Test with pytest
+        run: |
+          pytest tests/ -v  # 执行 tests 目录下的用例，-v 显示详细信息
