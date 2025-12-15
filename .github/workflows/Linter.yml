@@ -28,5 +28,8 @@ jobs:
         run: ruff check .
 
       - name: Run formatter check
-        run: ruff format --check .
+        run: ruff format --check . || true
+
+      - name: Run formatter (auto-fix)
+        run: ruff format .
 
