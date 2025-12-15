@@ -24,7 +24,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: ["3.9", "3.10", "3.11"]  # To support multiple versions, change to ["3.9", "3.10", "3.11"] (array format)
+          python-version: "3.9", "3.10", "3.11"  # To support multiple versions, change to ["3.9", "3.10", "3.11"] (array format)
           # Cache dependencies to speed up subsequent runs (enabled to avoid re-downloading dependencies)
           cache: "pip"
 
