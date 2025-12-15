@@ -5,6 +5,9 @@ on: [ push,pull_request ]
 jobs:
   lint-add-format:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.9", "3.10", "3.11" ]
     permissions:
       contents: read
 
@@ -15,7 +18,8 @@ jobs:
       - name: Set-up python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
 
       - name: Install RUFF
         run: pip install ruff==0.4.4
