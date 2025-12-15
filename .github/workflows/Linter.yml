@@ -15,7 +15,7 @@ jobs:
       - name: Set-up python
         uses: actions/setup-python@v5
         with:
-          python-version: ["3.9", "3.10", "3.11"]
+          python-version: "3.9"
 
       - name: Install RUFF
         run: pip install ruff==0.4.4
