@@ -12,10 +12,10 @@ jobs:
       - name: Check out
         uses: actions/checkout@v4
 
-      - name: Set-up python ${{ matrix.python-version }}
+      - name: Set-up python
         uses: actions/setup-python@v5
         with:
-          python-version:${{ matrix.python-version }}
+          python-version: ["3.9", "3.10", "3.11"]
 
       - name: Install RUFF
         run: pip install ruff==0.4.4
