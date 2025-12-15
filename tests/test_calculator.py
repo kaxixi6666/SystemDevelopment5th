@@ -54,13 +54,13 @@ class TestSubtraction:
     @pytest.mark.parametrize(
         "a, b, expected",
         [
-            (10, 4, 6),        # a > b
-            (4, 10, -6),       # a < b
-            (-5, -3, -2),      # two negatives
-            (5, -3, 8),        # positive - negative
-            (-5, 3, -8),       # negative - positive
-            (7, 0, 7),         # subtracting zero
-            (0, 7, -7),        # zero minus number
+            (10, 4, 6),  # a > b
+            (4, 10, -6),  # a < b
+            (-5, -3, -2),  # two negatives
+            (5, -3, 8),  # positive - negative
+            (-5, 3, -8),  # negative - positive
+            (7, 0, 7),  # subtracting zero
+            (0, 7, -7),  # zero minus number
         ],
     )
     def test_subtract_basic_cases(self, calc, a, b, expected):
@@ -89,14 +89,14 @@ class TestMultiplication:
     @pytest.mark.parametrize(
         "a, b, expected",
         [
-            (6, 7, 42),                # two positives
-            (-4, -5, 20),              # two negatives → positive
-            (3, -8, -24),              # positive * negative → negative
-            (9, 0, 0),                 # number * 0
-            (0, 9, 0),                 # 0 * number
-            (5, 1, 5),                 # identity element
-            (-500_000, 2, -1_000_000), # exact lower bound
-            (333_333, 3, 999_999),     # near upper bound but valid
+            (6, 7, 42),  # two positives
+            (-4, -5, 20),  # two negatives → positive
+            (3, -8, -24),  # positive * negative → negative
+            (9, 0, 0),  # number * 0
+            (0, 9, 0),  # 0 * number
+            (5, 1, 5),  # identity element
+            (-500_000, 2, -1_000_000),  # exact lower bound
+            (333_333, 3, 999_999),  # near upper bound but valid
         ],
     )
     def test_multiply_basic_cases(self, calc, a, b, expected):
@@ -123,12 +123,12 @@ class TestDivision:
     @pytest.mark.parametrize(
         "a, b, expected",
         [
-            (20, 5, 4),        # two positives
-            (-18, -3, 6),      # two negatives → positive
-            (21, -7, -3),      # positive / negative → negative
-            (8, 1, 8),         # identity
-            (0, 5, 0),         # zero divided by non-zero
-            (-10, 2, -5),      # / vs * mutation killer
+            (20, 5, 4),  # two positives
+            (-18, -3, 6),  # two negatives → positive
+            (21, -7, -3),  # positive / negative → negative
+            (8, 1, 8),  # identity
+            (0, 5, 0),  # zero divided by non-zero
+            (-10, 2, -5),  # / vs * mutation killer
             (10, -5, -2),
             (10, 5, 2),
         ],
@@ -177,14 +177,14 @@ class TestInputRangeValidation:
     @pytest.mark.parametrize(
         "method, a, b",
         [
-            ("add",       1_000_001,      5),
-            ("subtract", -1_000_001,      5),
-            ("multiply",  1_000_001,      1),
-            ("divide",    1_000_001,      1),
-            ("add",              0, 1_000_001),
-            ("subtract",         0, -1_000_001),
-            ("multiply",         1, 1_000_001),
-            ("divide",           1, -1_000_001),
+            ("add", 1_000_001, 5),
+            ("subtract", -1_000_001, 5),
+            ("multiply", 1_000_001, 1),
+            ("divide", 1_000_001, 1),
+            ("add", 0, 1_000_001),
+            ("subtract", 0, -1_000_001),
+            ("multiply", 1, 1_000_001),
+            ("divide", 1, -1_000_001),
         ],
     )
     def test_operand_out_of_range_raises(self, calc, method, a, b):
@@ -195,7 +195,7 @@ class TestInputRangeValidation:
     @pytest.mark.parametrize(
         "method, a, b, expected",
         [
-            ("add",  1_000_000, 0,  1_000_000),
+            ("add", 1_000_000, 0, 1_000_000),
             ("add", -1_000_000, 0, -1_000_000),
         ],
     )
@@ -221,9 +221,9 @@ class TestResultRangeValidation:
     @pytest.mark.parametrize(
         "a, b",
         [
-            (200_000, 6),   # 1_200_000
-            (600_000, 2),   # 1_200_000
-            (400_000, 3),   # 1_200_000
+            (200_000, 6),  # 1_200_000
+            (600_000, 2),  # 1_200_000
+            (400_000, 3),  # 1_200_000
             (400_000, -4),  # -1_600_000
         ],
     )
@@ -246,12 +246,12 @@ class TestTypeValidation:
     @pytest.mark.parametrize(
         "method, a, b",
         [
-            ("add",      "5",      3),
-            ("add",       5,     "x"),
-            ("multiply",  None,    4),
-            ("divide",    [],      2),
-            ("multiply", (1, 2),   3),
-            ("divide",   {"a": 1}, 2),
+            ("add", "5", 3),
+            ("add", 5, "x"),
+            ("multiply", None, 4),
+            ("divide", [], 2),
+            ("multiply", (1, 2), 3),
+            ("divide", {"a": 1}, 2),
         ],
     )
     def test_non_numeric_inputs_raise(self, calc, method, a, b):
